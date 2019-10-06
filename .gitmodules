@@ -1,0 +1,6 @@
+[submodule "ros-keyboard"]
+	path = ros-keyboard
+	url = https://github.com/lrse/ros-keyboard
+[submodule "darknet_ros"]
+	path = darknet_ros
+	url = https://github.com/leggedrobotics/darknet_ros
