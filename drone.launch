@@ -1,0 +1,30 @@
+<launch>
+
+	<arg name="droneip" default="192.168.1.1"></arg>
+	<node name="ardrone_driver" pkg="ardrone_autonomy" type="ardrone_driver" output="screen" args="-ip $(arg droneip)">
+	<param name="navdata_demo" value="False" /><param name="realtime_navdata" value="True" /><param name="realtime_video" value="True" /><param name="looprate" value="30" /></node>
+
+    <param name="max_bitrate" value="4000" />
+    <param name="bitrate" value="4000" />
+    <param name="navdata_demo" value="0" />
+    <param name="flight_without_shell" value="0" />
+    <param name="altitude" value="1500" />
+    <param name="altitude_max" value="2000" />
+    <param name="altitude_min" value="1500" />
+    <param name="control_vz_max" value="400" />
+    <param name="indoor_control_vz_max" value="400" />
+
+        
+    <!-- Use YOLOv2 - tiny-->
+    <arg name="network_param_file"         default="$(find darknet_ros)/config/yolov2-tiny.yaml"/>
+
+    <!-- Include main launch file -->
+    <include file="$(find darknet_ros)/launch/darknet_ros.launch">
+       <arg name="network_param_file"    value="$(arg network_param_file)"/>
+    </include>
+  
+    <node name="objectColor" pkg="objectColor" type="objectColor"> </node>
+    
+    <node name="keyboard" pkg="keyboard" type="keyboard"> </node>
+  
+</launch>
